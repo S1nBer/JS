@@ -43,3 +43,15 @@
     return x * x;
   };
 })("Hello");
+
+//arguments
+function foo(x) {
+  console.log(x);
+  console.log(arguments[2]);
+
+  for (let i = 0; i < arguments.length; i++) {
+    console.log(arguments[i]);
+  }
+}
+
+foo(11, "some", [1, 2]);
