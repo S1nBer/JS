@@ -1,7 +1,6 @@
 //1
-function arg(...args) {
-  let [firstEl, ...lastEl] = args;
-  return { firstEl, lastEl };
+function arg(firstEl, ...args) {
+  return { firstEl, args };
 }
 
 console.log(arg("a", "b", "c", "d"));
@@ -58,7 +57,7 @@ let user = {
   ],
 };
 
-//3.1
+/* //3.1
 const { name, balance, email } = user;
 console.log(name, balance, email);
 //3.2
@@ -69,9 +68,17 @@ console.log(firstElem, otherEl[otherEl.length - 1]);
 const { friends } = user;
 const [firstElement] = friends;
 const { name: name2 } = firstElement;
-console.log(name2);
+console.log(name2); */
+const {
+  name,
+  balance,
+  email,
+  tags: [firstElem, ...otherEl],
+  friends: [{ name: friendName }],
+} = user;
+console.log(name, balance, email, firstElem, otherEl, friendName);
 
 //4
-const { tags: newTags, friends: newFriends } = user;
-const arr = [...newTags, ...newFriends];
+/* const { tags: newTags, friends: newFriends } = user; */
+const arr = [...user.tags, ...user.friends];
 console.log(arr);
