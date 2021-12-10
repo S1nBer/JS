@@ -24,4 +24,3 @@ console.log(arrOfContent);
     el.textContent = "-text-";
   }
 });
-console.log(res[0].nodeType);
