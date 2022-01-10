@@ -61,9 +61,9 @@ const newsService = (function () {
   const apiUrl = "https://newsapi.org/v2";
 
   return {
-    topHeadlines(country = "ua", cb) {
+    topHeadlines(country = "ua", category = "business", cb) {
       http.get(
-        `${apiUrl}/top-headlines?country=${country}&category=technology&apiKey=${apiKey}`,
+        `${apiUrl}/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`,
         cb
       );
     },
@@ -76,6 +76,7 @@ const newsService = (function () {
 // Elements
 const form = document.forms["newsControls"];
 const countrySelect = form.elements["country"];
+const categorySelect = form.elements["category"];
 const searchInput = form.elements["search"];
 
 form.addEventListener("submit", (e) => {
@@ -88,20 +89,21 @@ document.addEventListener("DOMContentLoaded", function () {
   loadNews();
 });
 
-//load news function
+// Load news function
 function loadNews() {
   showLoader();
   const country = countrySelect.value;
+  const category = categorySelect.value;
   const searchText = searchInput.value;
 
   if (!searchText) {
-    newsService.topHeadlines(country, onGetResponse);
+    newsService.topHeadlines(country, category, onGetResponse);
   } else {
     newsService.everything(searchText, onGetResponse);
   }
 }
 
-//function on get response from server
+// Function on get response from server
 function onGetResponse(err, res) {
   removePreloader();
   if (err) {
@@ -117,7 +119,7 @@ function onGetResponse(err, res) {
   renderNews(res.articles);
 }
 
-//function render news
+// Function render news
 function renderNews(news) {
   const newsContainer = document.querySelector(".news-container .row");
   if (newsContainer.children.length) {
@@ -126,6 +128,9 @@ function renderNews(news) {
   let fragment = "";
 
   news.forEach((newsItem) => {
+    if (!newsItem.urlToImage) {
+      newsItem.urlToImage = "news_default.jpg";
+    }
     const el = newsTemplate(newsItem);
     fragment += el;
   });
