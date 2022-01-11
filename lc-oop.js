@@ -62,3 +62,34 @@ Customer.prototype.getMembership = function () {
 };
 
 const customer = new Customer("Tobi", "Maquayr", "basic");
+
+// ES6
+class ProductES {
+  constructor(brand, price, discount) {
+    this._brand = brand;
+    this.price = price;
+    this.discount = discount;
+  }
+
+  get brand() {
+    return this._brand;
+  }
+
+  set brand(brand) {
+    this._brand = brand;
+  }
+
+  getPriceWithDiscount() {
+    return (this.price * (100 - this.discount)) / 100;
+  }
+
+  ["setPrice"](newPrice) {
+    this.price = this.newPrice;
+  }
+
+  static plus(x, y) {
+    return x + y;
+  }
+}
+
+const newProduct = new ProductES("Samsung", 200, 10);
