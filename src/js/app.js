@@ -8,7 +8,10 @@ mod1.foo(); */
 
 console.log(getData()); */
 
-import api from "./services/apiService";
+import locations from "./store/location";
 
-api.countries().then((res) => console.log(res));
-api.cities().then((res) => console.log(res));
+locations.init().then((res) => {
+  console.log(res);
+  console.log(locations);
+  console.log(locations.getCitiesByCountryCode("SL"));
+});
