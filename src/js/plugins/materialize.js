@@ -33,3 +33,11 @@ M.Datepicker.init(datepickers, {
 export function getDatePickerInstance(elem) {
   return M.Datepicker.getInstance(elem);
 }
+
+//Init dropdown
+const dropdown = document.querySelectorAll(".dropdown-trigger");
+M.Dropdown.init(dropdown);
+
+export function getDropdownInstance(elem) {
+  return M.Dropdown.getInstance(elem);
+}

@@ -11,6 +11,7 @@ console.log(getData()); */
 import "../css/style.css";
 import "./plugins";
 import locations from "./store/location";
+import favorite from "./store/favorite";
 import formUI from "./views/form";
 import ticketsUI from "./views/tickets";
 import currencyUI from "./views/currency";
@@ -18,6 +19,7 @@ import currencyUI from "./views/currency";
 document.addEventListener("DOMContentLoaded", () => {
   initApp();
   const form = formUI.form;
+  const favoriteTickets = favorite.storeOfTickets;
 
   // Events
   form.addEventListener("submit", (e) => {
@@ -48,5 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log(locations.lastSearch);
     ticketsUI.renderTickets(locations.lastSearch);
+    ticketsUI.renderFavoriteTickets(favoriteTickets);
   }
 });
