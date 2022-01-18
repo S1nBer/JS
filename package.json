@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "date-fns": "^2.28.0"
+    "date-fns": "^2.28.0",
+    "firebase-tools": "^10.1.0"
   }
 }
