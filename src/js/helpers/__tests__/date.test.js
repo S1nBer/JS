@@ -1,5 +1,5 @@
 /* import it from "date-fns/esm/locale/it/index.js"; */
-import { formatDate } from "./date";
+import { formatDate } from "../date";
 
 describe("formatDate", () => {
   it("check format", () => {
