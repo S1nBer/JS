@@ -41,6 +41,16 @@ Cypress.Commands.add("reachThePage", () => {
   cy.wait("@getAirlines");
 });
 
+Cypress.Commands.add("switchCurrency", () => {
+  cy.get("[data-hook=currencySelect]").as("currencySelect");
+
+  cy.get("@currencySelect").click();
+
+  cy.get(".currency-select .select-wrapper .dropdown-content li:nth-child(2n)")
+    .contains("€ Euro")
+    .click();
+});
+
 Cypress.Commands.add("initElements", () => {
   cy.get("[data-hook=autocompleteOrigin]").as("autocompleteOrigin");
   cy.get("[data-hook=autocompleteDestination]").as("autocompleteDestination");
